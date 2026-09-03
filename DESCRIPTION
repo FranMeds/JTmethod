@@ -1,11 +1,25 @@
 Package: JTmethod
-Title: What the Package Does (One Line, Title Case)
+Title: Jacobson-Traux Method for reliable change and clinical significance
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person(
+    "Francisco de Assis", "Medeiros", 
+    email = "francisco.medeiros@unesp.br", 
+    role = c("aut", "cre"),
+    comment = c(
+    ORCID = "0000-0001-5370-2952",
+    funding = "This study was financed, in part, by the 
+    São Paulo Research Foundation (FAPESP), Brasil. Process Number 2024/05390-6"))
+Description: Implements the Jacobson-Traux method for assessing reliable change 
+    and clinical significance in pre- and post-intervention measurements. The package
+    provides functions for calculating reliable change indices and classifying 
+    individual changes according to the Jacobson-Traux criteria.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 8.1.0
+Imports:
+    dplyr,
+    purrr,
+    readxl,
+    writexl
+Config/roxygen2/version: 8.1.0
