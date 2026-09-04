@@ -18,8 +18,9 @@ pak::pak("FranMeds/JTmethod")
 
 ## Example
 
-The example below demonstrates how to use the package. The main function is
-`calc_indices`.
+The main function,`calc_indices`, reads participant data from a Excel workbook,
+calculates the JT indices, and exports the results to a new workbook. See the
+example below:
 
 ``` r
 library(JTmethod)
@@ -35,27 +36,23 @@ calc_indices(
 
 The function accepts four arguments:
 
-The `input_path` argument specifies the path to the Excel file saved in the main 
-project's directory on your computer. The Excel file should contain the raw data
-required to calculate the JT indices.
+- `input_path` - path ti the Excel file containing the raw data required for the JT
+analysis.
 
-The `output_path` argument specifies the directory and filename of the output 
-file in which the calculated indices will be saved.
+- `output_path` - path and filename for teh output Excel file containing the 
+calculated indices.
 
-The `expected_score_T2` argument defines the expected direction of improvement 
-at T2 (post-intervention), indicating whether higher or lower scores represent 
-improvement:
+- `expected_score_T2` - expected direction of improvement at T2 (post-interventio).
+Use `higher` when higher scores indicate improvement (e.g., social skills scales)
+and `lower` when lower scores indicate improvement (e.g., depression, anxiety, 
+or behavior problem scales).
 
-- Use `"higher"` when higher post-intervention scores indicate improvement 
-(e.g., social skills scales).
+- `cutoff` - criterion used to determine clinical significance. Th avaliable options 
+are Criteria A, B, C or an empirical cutoff. 
 
-- Use `"lower"` when lower post-intervention scores indicate improvement 
-(e.g., depression, anxiety, or behavior problem scales).
-
-The `rel` argument specifies the reliability coefficient of the 
-instrument used to collect the data. It is recommended that users adopt a 
-reliability estimate supported by the literature and the most appropriate for the 
-instrument (see [Blampied, 2022](https://www.cambridge.org/core/product/identifier/S1754470X22000484/type/journal_article)).
+- `rel` Reliability coefficient of the instrument used to collect the data. A 
+reliability estimate supported by the literature and appropriate for the 
+instrument should be used (see [Blampied, 2022](https://www.cambridge.org/core/product/identifier/S1754470X22000484/type/journal_article)).
 
 ## Criteria A, B, C, and Empirical Cutoff
 
@@ -80,7 +77,7 @@ Furthermore, we have an empirical cutoff:
 - **Empirical cutoff** allows users to specify a cutoff score reported in the
 instrument's manual or validation study.
 
-The appropriate criterion should be selected according to the psychometric
+An appropriate criterion should be selected according to the psychometric
 properties and normative information available in the literature.
 
 ## Input File Format
@@ -114,7 +111,7 @@ For Criterion C
 The choice between these three input formats depends on the reference population
 used to calculate the Reliable Change Index (RCI).
 
-The expected arguments are:
+Some arguments are expected:
 
 - `id` - Participant identifier.
 - `T1` - Pre-intervention score.
@@ -132,15 +129,15 @@ using an empirical cutoff).
 - `lower_score` - Minimum possible score of the instrument (required only when
 using an empirical cutoff).
 
-The current version of the JTmethod requires each dataset gathered from a
-specific instrument to be placed in a dedicated worksheet. A participant, 
-identified by their unique ID, can appear in as many worksheet as needed, but
-all participants in a worksheet must have data collected from the same instrument. 
+Each dataset collected with a specific instrument should be placed in a separate
+worksheet. A participant identified by the same ID may appear in multiple 
+worksheets when necessary. Within a given worksheet, however, all participants 
+must have data collected with the same instrument.
 
 ## Output
 
-The function exports an Excel file containing the calculated JT indices for each
-participant. 
+As expected, the function exports an Excel file containing the calculated JT 
+indices for each participant. 
 
 | id  | rc    |      confiability      |  cutoff  |  class. |
 |:----|:-----:|:----------------------:|:--------:|:-------:|
