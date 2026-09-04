@@ -149,4 +149,9 @@ The output includes the Reliable Change Index (RCI), clinical
 significance results, and the final classification of each participant according
 to the [Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-006X.59.1.12) method.
 
+## Citation 
 
+If you use JTmethod in your research, please cite:
+
+Medeiros, F. de A. (2026). JTmethod (Version v0.1.1) [Computer software].
+Zenodo. https://doi.org/10.5281/zenodo.22305526

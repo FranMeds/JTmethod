@@ -5,9 +5,9 @@ message: "If you use JTmethod in your research, please cite it as below."
 title: "JTmethod"
 
 abstract: "The goal of JTmethod is to provide a comprehensive implementation of the
-[Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-006X.59.1.12) 
-method in R. This includes the reliable change analysis, clinical significance 
-assessment using Criteria A, B, C, and an empirical cutoff, and a complete 
+[Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-006X.59.1.12)
+method in R. This includes the reliable change analysis, clinical significance
+assessment using Criteria A, B, C, and an empirical cutoff, and a complete
 classification of individual outcomes."
 
 authors:
@@ -24,3 +24,5 @@ type: software
 license: "GPL-3.0"
 
 repository-code: "https://github.com/FranMeds/JTmethod.git"
+
+DOI: "https://doi.org/10.5281/zenodo.22305526"
