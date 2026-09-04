@@ -1,6 +1,6 @@
 Package: JTmethod
 Title: Jacobson-Traux Method for reliable change and clinical significance
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(
     "Francisco de Assis", "Medeiros", 
