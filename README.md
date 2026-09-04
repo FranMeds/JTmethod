@@ -36,10 +36,10 @@ calc_indices(
 
 The function accepts four arguments:
 
-- `input_path` - path ti the Excel file containing the raw data required for the JT
+- `input_path` - path to the Excel file containing the raw data required for the JT
 analysis.
 
-- `output_path` - path and filename for teh output Excel file containing the 
+- `output_path` - path and filename for the output Excel file containing the 
 calculated indices.
 
 - `expected_score_T2` - expected direction of improvement at T2 (post-interventio).
@@ -47,7 +47,7 @@ Use `higher` when higher scores indicate improvement (e.g., social skills scales
 and `lower` when lower scores indicate improvement (e.g., depression, anxiety, 
 or behavior problem scales).
 
-- `cutoff` - criterion used to determine clinical significance. Th avaliable options 
+- `cutoff` - criterion used to determine clinical significance. The avaliable options 
 are Criteria A, B, C or an empirical cutoff. 
 
 - `rel` Reliability coefficient of the instrument used to collect the data. A 
