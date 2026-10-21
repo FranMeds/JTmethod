@@ -87,12 +87,12 @@ calc_JT<- function(
                            ifelse(rc < -1.96, "Reliable deterioration",
                                   "No reliable change"))
     class_final <- dplyr::case_when(
-      rc > 1.96 & T1 <= cutoff & T2 > cutoff ~ "RI/R",       # Recovered
-      rc > 1.96 & T1 <= cutoff & T2 <= cutoff ~ "RI/I",      # Improved
-      rc > 1.96 & T1 > cutoff & T2 > cutoff ~ "RI",          # Reliable improvement
-      rc < -1.96 & T1 > cutoff & T2 < cutoff ~ "RD/D",       # Deteriorated
-      rc < -1.96 & ((T1 > cutoff & T2 > cutoff) |
-                      (T1 < cutoff & T2 < cutoff)) ~ "RD/W", # Worsened
+      rc > 1.96 & T1 <= cutoff & T2 > cutoff_val ~ "RI/R",       # Recovered
+      rc > 1.96 & T1 <= cutoff & T2 <= cutoff_val ~ "RI/I",      # Improved
+      rc > 1.96 & T1 > cutoff & T2 > cutoff_val ~ "RI",          # Reliable improvement
+      rc < -1.96 & T1 > cutoff & T2 < cutoff_val ~ "RD/D",       # Deteriorated
+      rc < -1.96 & ((T1 > cutoff & T2 > cutoff_val) |
+                      (T1 < cutoff & T2 < cutoff_val)) ~ "RD/W", # Worsened
       TRUE ~ "NRC" # No reliable change
     )
 
@@ -105,12 +105,12 @@ calc_JT<- function(
                           ifelse(rc < -1.96, "Reliable deterioration",
                                  "No reliable change"))
     class_final <- dplyr::case_when(
-     rc > 1.96 & T1 >= cutoff & T2 < cutoff ~ "RI/R", # Recovered
-     rc > 1.96 & T1 >= cutoff & T2 >= cutoff ~ "RI/I", # Improved
-     rc > 1.96 & T1 < cutoff & T2 < cutoff ~ "RI",  # Reliable improvement
-     rc < -1.96 & T1 < cutoff & T2 > cutoff ~ "RD/D", # Deteriorated
-     rc < -1.96 & ((T1 < cutoff & T2 < cutoff) |
-                     (T1 > cutoff & T2 > cutoff)) ~"RD/W", # Worsened
+     rc > 1.96 & T1 >= cutoff & T2 < cutoff_val ~ "RI/R", # Recovered
+     rc > 1.96 & T1 >= cutoff & T2 >= cutoff_val ~ "RI/I", # Improved
+     rc > 1.96 & T1 < cutoff & T2 < cutoff_val ~ "RI",  # Reliable improvement
+     rc < -1.96 & T1 < cutoff & T2 > cutoff_val ~ "RD/D", # Deteriorated
+     rc < -1.96 & ((T1 < cutoff & T2 < cutoff_val) |
+                     (T1 > cutoff & T2 > cutoff_val)) ~"RD/W", # Worsened
      TRUE ~ "NRC" # No reliable change
     )
 
