@@ -68,7 +68,7 @@ calc_JT<- function(
   } else {
 
     # missing parameter warning
-    stop("The 'cutoff' argument must set 'A', 'B', 'C', or an integer (emoirical cutoff).")
+    stop("The 'cutoff' argument must set 'A', 'B', 'C', or an integer (Standardized cutoff).")
   }
 
   #-----------------------------------------------------------------------------
@@ -81,37 +81,30 @@ calc_JT<- function(
   if (expected_score_T2 == "higher") {
 
     # HIGHER post-intervention scores indicates better outcomes
-    rc <- (T2 - T1) / Sdiff
+    rci <- (T2 - T1) / Sdiff
 
-    confiability <- ifelse(rc > 1.96, "Reliable improvement",
-                           ifelse(rc < -1.96, "Reliable deterioration",
-                                  "No reliable change"))
     class_final <- dplyr::case_when(
-      rc > 1.96 & T1 <= cutoff & T2 > cutoff_val ~ "RI/R",       # Recovered
-      rc > 1.96 & T1 <= cutoff & T2 <= cutoff_val ~ "RI/I",      # Improved
-      rc > 1.96 & T1 > cutoff & T2 > cutoff_val ~ "RI",          # Reliable improvement
-      rc < -1.96 & T1 > cutoff & T2 < cutoff_val ~ "RD/D",       # Deteriorated
-      rc < -1.96 & ((T1 > cutoff & T2 > cutoff_val) |
-                      (T1 < cutoff & T2 < cutoff_val)) ~ "RD/W", # Worsened
-      TRUE ~ "NRC" # No reliable change
+      rci > 1.96 & T1 <= cutoff & T2 > cutoff_val ~ "Reliable improvement/Recovered",
+      rci > 1.96 & T1 <= cutoff & T2 <= cutoff_val ~ "Reliable improvement/Improved",
+      rci > 1.96 & T1 > cutoff & T2 > cutoff_val ~ "Reliable improvement",
+      rci < -1.96 & T1 > cutoff & T2 < cutoff_val ~ "Reliable deterioration/Deteriorated",
+      rci < -1.96 & ((T1 > cutoff & T2 > cutoff_val) |
+                      (T1 < cutoff & T2 < cutoff_val)) ~ "Reliable deterioration/Worsened",
+      TRUE ~ "No reliable change"
     )
 
   } else if (expected_score_T2 == "lower") {
     # LOWER post-intervention scores indicate better outcomes
-    rc <- ((T2 - T1) / Sdiff) * -1
+    rci <- ((T2 - T1) / Sdiff) * -1
 
-
-    confiability <- ifelse(rc > 1.96, "Reliable improvement",
-                          ifelse(rc < -1.96, "Reliable deterioration",
-                                 "No reliable change"))
     class_final <- dplyr::case_when(
-     rc > 1.96 & T1 >= cutoff & T2 < cutoff_val ~ "RI/R", # Recovered
-     rc > 1.96 & T1 >= cutoff & T2 >= cutoff_val ~ "RI/I", # Improved
-     rc > 1.96 & T1 < cutoff & T2 < cutoff_val ~ "RI",  # Reliable improvement
-     rc < -1.96 & T1 < cutoff & T2 > cutoff_val ~ "RD/D", # Deteriorated
-     rc < -1.96 & ((T1 < cutoff & T2 < cutoff_val) |
-                     (T1 > cutoff & T2 > cutoff_val)) ~"RD/W", # Worsened
-     TRUE ~ "NRC" # No reliable change
+     rci > 1.96 & T1 >= cutoff & T2 < cutoff_val ~ "Reliable improvement/Recovered",
+     rci > 1.96 & T1 >= cutoff & T2 >= cutoff_val ~ "Reliable improvement/Improved",
+     rci > 1.96 & T1 < cutoff & T2 < cutoff_val ~ "Reliable improvement",
+     rci < -1.96 & T1 < cutoff & T2 > cutoff_val ~ "Reliable deterioration/Deteriorated",
+     rci < -1.96 & ((T1 < cutoff & T2 < cutoff_val) |
+                     (T1 > cutoff & T2 > cutoff_val)) ~"Reliable deterioration/Worsened",
+     TRUE ~ "No reliable change"
     )
 
 
@@ -124,12 +117,20 @@ calc_JT<- function(
 
   #-----------------------------------------------------------------------------
 
+  criterion <- dplyr::case_when(
+    cutoff == "A" ~ "A",
+    cutoff == "B" ~ "B",
+    cutoff == "C" ~ "B",
+    TRUE ~ "Standardized cutoff"
+  )
+
+
   # stores the results in a data frame
   data.frame(
     id = id,
-    rc = round(rc, 2),
-    confiability = confiability,
+    rci = round(rci, 2),
     cutoff = cutoff_val,
-    class. = class_final
+    final = class_final,
+    criterion = criterion
   )
 }
