@@ -3,7 +3,7 @@
 The goal of JTmethod is to provide a comprehensive implementation of the
 [Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-006X.59.1.12) 
 method in R. This includes the reliable change analysis, clinical significance 
-assessment using Criteria A, B, C, and an empirical cutoff, and a complete 
+assessment using Criteria A, B, C, and an Standardized cutoff, and a complete 
 classification of individual outcomes.
 
 ## Installation
@@ -48,17 +48,17 @@ and `lower` when lower scores indicate improvement (e.g., depression, anxiety,
 or behavior problem scales).
 
 - `cutoff` - criterion used to determine clinical significance. The avaliable options 
-are Criteria A, B, C or an empirical cutoff. 
+are Criteria A, B, C or an Standardized cutoff. 
 
 - `rel` Reliability coefficient of the instrument used to collect the data. A 
 reliability estimate supported by the literature and appropriate for the 
 instrument should be used (see [Blampied, 2022](https://www.cambridge.org/core/product/identifier/S1754470X22000484/type/journal_article)).
 
-## Criteria A, B, C, and Empirical Cutoff
+## Criteria A, B, C, and Standardized Cutoff
 
 JTmethod supports the three clinical significance criteria proposed by 
 [Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0022-006X.59.1.12), 
-as well as an empirical cutoff defined by the psychometric properties of the 
+as well as an standardized cutoff defined by the psychometric properties of the 
 instrument used. Users must be explicitly state this value. As defined in the authors' original article (p. 13):
 
 - **Criterion A** "The level of functioning subsequent to therapy should fall 
@@ -72,9 +72,9 @@ as within two standard deviations of the mean of that population".
 client closer to the mean of the functional population than it does to the mean 
 of the dysfunctional population".
 
-Furthermore, we have an empirical cutoff:
+Furthermore, we have an standardized cutoff:
 
-- **Empirical cutoff** allows users to specify a cutoff score reported in the
+- **Standardized cutoff** allows users to specify a cutoff score reported in the
 instrument's manual or validation study.
 
 An appropriate criterion should be selected according to the psychometric
@@ -84,7 +84,7 @@ properties and normative information available in the literature.
 
 The input Excel file must contain the following columns filled:
 
-For Criterion A
+For Criterion A and Standardized cutoff
 
 | id  | T1  | T2  | mean_disf | sd_disf | mean_func | sd_func | higher_score | lower_score |
 |:----|:---:|:---:|:---------:|:-------:|:---------:|:-------:|:------------:|:-----------:|
@@ -125,9 +125,9 @@ C).
 - `sd_func` - Standard deviation of the functional population (required for
 Criteria B and C).
 - `higher_score` - Maximum possible score of the instrument (required only when
-using an empirical cutoff).
+using an standardized cutoff).
 - `lower_score` - Minimum possible score of the instrument (required only when
-using an empirical cutoff).
+using an standardized cutoff).
 
 Each dataset collected with a specific instrument should be placed in a separate
 worksheet. A participant identified by the same ID may appear in multiple 
@@ -139,11 +139,12 @@ must have data collected with the same instrument.
 As expected, the function exports an Excel file containing the calculated JT 
 indices for each participant. 
 
-| id  | rc    |      confiability      |  cutoff  |  class. |
-|:----|:-----:|:----------------------:|:--------:|:-------:|
-| P1  | 5.28  | Reliable improvement   |    16    |   RI/R  |
-| P2  | 1.89  | No reliable change     |    16    |   NRC   |
-| P3  |-2,64  | Reliable deterioration |    16    |   RD/D  |
+| Id  | Reliable change index | Cutoff score | Confiability/Clinical significance | Criterion |
+|:----|:-----:|:----------------------:|:--------:|:-------:|:----:|
+| P1  | 5.28  | 27 | Reliable improvement/Recovered  | A |
+| P2  | 1.89  | 20 | No reliable change | B |
+| P3  |-2,64  | 16 | Reliable deterioration/Deteriored | C |
+| P4  | 3.87  | 23 | Reliable improvement/Recovered  | Standardized cutoff |
 
 The output includes the Reliable Change Index (RCI), clinical
 significance results, and the final classification of each participant according
@@ -153,5 +154,4 @@ to the [Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.103
 
 If you use JTmethod in your research, please cite:
 
-Medeiros, F. de A. (2026). JTmethod (Version v0.1.1) [Computer software].
-Zenodo. https://doi.org/10.5281/zenodo.22305526
+Medeiros, F. de A. (2026). JTmethod (Version v0.2.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23541174
