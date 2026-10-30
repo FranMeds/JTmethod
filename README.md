@@ -140,7 +140,7 @@ As expected, the function exports an Excel file containing the calculated JT
 indices for each participant. 
 
 | Id  | Reliable change index | Cutoff score | Confiability/Clinical significance | Criterion |
-|:----|:-----:|:----------------------:|:--------:|:-------:|:----:|
+|:----|:---------------------:|:------------:|:----------------------------------:|:---------:|
 | P1  | 5.28  | 27 | Reliable improvement/Recovered  | A |
 | P2  | 1.89  | 20 | No reliable change | B |
 | P3  |-2,64  | 16 | Reliable deterioration/Deteriored | C |
