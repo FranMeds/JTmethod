@@ -154,4 +154,4 @@ to the [Jacobson and Truax (1991)](https://psycnet.apa.org/doiLanding?doi=10.103
 
 If you use JTmethod in your research, please cite:
 
-Medeiros, F. de A. (2026). JTmethod (Version v0.2.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23541174
+Medeiros, F. de A. (2026). JTmethod (Version v0.3.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23809167
